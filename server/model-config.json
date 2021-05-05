@@ -1,0 +1,237 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models/user",
+      "../common/models/admin_users",
+      "../common/models/admin_user_permissions",
+      "../common/models/admin_roles",
+      "../common/models/admin_role_users",
+      "../common/models/admin_role_permissions",
+      "../common/models/admin_role_menu",
+      "../common/models/admin_permissions",
+      "../common/models/admin_menu",
+      "../common/models/store",
+      "../common/models/store_admin_users",
+      "../common/models/store_wallets",
+      "../common/models/products",
+      "../common/models/category",
+      "../common/models/discount",
+      "../common/models/discount_product"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "AdminPermissions": {
+    "dataSource": "mysqlDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "getPermission": true,
+          "registerPermission": true,
+          "changePermission": true,
+          "removePermission": true
+        }
+      }
+    }
+  },
+  "User": {
+    "dataSource": "mysqlDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "login": true,
+          "changePassword": true,
+          "signUpUser": true,
+          "forgotPassword": true
+        }
+      }
+    }
+  },
+  "AdminUsers": {
+    "dataSource": "mysqlDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "registerAccount": true,
+          "login": true
+        }
+      }
+    }
+  },
+  "AdminMenu": {
+    "dataSource": "mysqlDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "getMenu": true,
+          "registerMenu": true,
+          "changeMenu": true,
+          "removeMenu": true
+        }
+      }
+    }
+  },
+  "AdminRoles": {
+    "dataSource": "mysqlDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "registerRole": true,
+          "changeRole": true
+        }
+      }
+    }
+  },
+  "AdminRoleUsers": {
+    "dataSource": "mysqlDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false
+        }
+      }
+    }
+  },
+  "AdminRolePermissions": {
+    "dataSource": "mysqlDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false
+        }
+      }
+    }
+  },
+  "AdminRoleMenu": {
+    "dataSource": "mysqlDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false
+        }
+      }
+    }
+  },
+  "AdminUserPermissions": {
+    "dataSource": "mysqlDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false
+        }
+      }
+    }
+  },
+  "Stores": {
+    "dataSource": "mysqlDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false
+        }
+      }
+    }
+  },
+  "StoreAdminUsers": {
+    "dataSource": "mysqlDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false
+        }
+      }
+    }
+  },
+  "StoreWallets": {
+    "dataSource": "mysqlDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false
+        }
+      }
+    }
+  },
+  "Category": {
+    "dataSource": "mysqlDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false
+        }
+      }
+    }
+  },
+  "Products": {
+    "dataSource": "mysqlDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false
+        }
+      }
+    }
+  },
+  "Discount": {
+    "dataSource": "mysqlDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false
+        }
+      }
+    }
+  },
+  "DiscountProduct": {
+    "dataSource": "mysqlDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false
+        }
+      }
+    }
+  }
+}

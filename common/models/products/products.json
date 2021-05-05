@@ -1,0 +1,219 @@
+{
+  "name": "Products",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "products"
+    }
+  },
+  "http": {
+    "path": "v1/products"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "dataType": "bigint",
+      "id": true,
+      "generated" : true,
+      "mysql": {
+        "dataType": "bigint"
+      }
+    },
+    "productName": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "product_name",
+        "dataType": "varchar(255)"
+      }
+    },
+    "sku": {
+      "type": "string",
+      "required": true,
+      "index": {
+        "unique": true
+      },
+      "mysql": {
+        "columnName": "sku",
+        "dataType": "varchar(100)"
+      }
+    },
+    "keyword": {
+      "type": "string",
+      "required": false,
+      "mysql": {
+        "columnName": "keyword",
+        "dataType": "varchar(255)"
+      }
+    },
+    "description": {
+      "type": "string",
+      "required": false,
+      "mysql": {
+        "columnName": "description",
+        "dataType": "varchar(1024)"
+      }
+    },
+    "image": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "image",
+        "dataType": "varchar(512)"
+      }
+    },
+    "categoryOther": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "category_other",
+        "dataType": "varchar(255)"
+      }
+    },
+    "price": {
+      "type": "number",
+      "required": true,
+      "mysql": {
+        "columnName": "price"
+      }
+    },
+    "cost": {
+      "type": "number",
+      "required": true,
+      "mysql": {
+        "columnName": "cost"
+      }
+    },
+    "stock": {
+      "type": "number",
+      "required": true,
+      "mysql": {
+        "columnName": "stock"
+      }
+    },
+    "sold": {
+      "type": "number",
+      "required": true,
+      "mysql": {
+        "columnName": "sold"
+      }
+    },
+    "view": {
+      "type": "number",
+      "required": false,
+      "mysql": {
+        "columnName": "view"
+      }
+    },
+    "status": {
+      "type": "number",
+      "required": false,
+      "mysql": {
+        "columnName": "status"
+      }
+    },
+    "isDiscount": {
+      "type": "number",
+      "required": false,
+      "mysql": {
+        "columnName": "is_discount"
+      }
+    },
+    "dateLastView": {
+      "type": "number",
+      "required": false,
+      "mysql": {
+        "columnName": "date_last_view"
+      }
+    },
+    "dateAvailable": {
+      "type": "number",
+      "required": false,
+      "mysql": {
+        "columnName": "date_available"
+      }
+    },
+    "averageRate": {
+      "type": "number",
+      "required": false,
+      "mysql": {
+        "columnName": "average_rate"
+      }
+    },
+    "peopleRate": {
+      "type": "number",
+      "required": false,
+      "mysql": {
+        "columnName": "people_rate"
+      }
+    },
+    "currencyCoin": {
+      "type": "string",
+      "required": false,
+      "mysql": {
+        "columnName": "currency_coin"
+      }
+    },
+    "currencyUnit": {
+      "type": "number",
+      "required": false,
+      "mysql": {
+        "columnName": "currency_unit"
+      }
+    },
+    "createdAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": true,
+      "mysql": {
+        "columnName": "created_at"
+      }
+    },
+    "updatedAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "columnName": "updated_at"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "Stores": {
+      "type": "belongsTo",
+      "model": "Stores",
+      "foreignKey": "storeId"
+    },
+    "Category": {
+      "type": "belongsTo",
+      "model": "Category",
+      "foreignKey": "categoryId"
+    },
+    "StoresDiscount": {
+      "type": "hasMany",
+      "model": "Store",
+      "foreignKey": "storeId",
+      "through": "DiscountProduct"
+    }
+  },
+  "foreignKeys": {
+    "product_stores": {
+      "name" : "product_stores",
+      "foreignKey": "storeId",
+      "entityKey": "id",
+      "entity": "Stores"
+    },
+    "product_category": {
+      "name" : "product_category",
+      "foreignKey": "categoryId",
+      "entityKey": "id",
+      "entity": "Category"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,71 @@
+{
+  "name": "AdminRoleMenu",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "admin_role_menu"
+    }
+  },
+  "http": {
+    "path": "v1/admin_role_menu"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "dataType": "bigint",
+      "id": true,
+      "generated" : true,
+      "mysql": {
+        "dataType": "bigint"
+      }
+    },
+    "createdAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": true,
+      "mysql": {
+        "columnName": "created_at"
+      }
+    },
+    "updatedAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "columnName": "updated_at"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "AdminRoles": {
+      "type": "belongsTo",
+      "model": "AdminRoles",
+      "foreignKey": "roleId"
+    },
+    "AdminMenu": {
+      "type": "belongsTo",
+      "model": "AdminMenu",
+      "foreignKey": "menuId"
+    }
+  },
+  "foreignKeys": {
+    "AdminRoles_role-menu": {
+      "name" : "AdminRoles_role-menu",
+      "foreignKey": "roleId",
+      "entityKey": "id",
+      "entity": "AdminRoles"
+    },
+    "AdminMenu_role-menu": {
+      "name" : "AdminMenu_role-menu",
+      "foreignKey": "menuId",
+      "entityKey": "id",
+      "entity": "AdminMenu"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

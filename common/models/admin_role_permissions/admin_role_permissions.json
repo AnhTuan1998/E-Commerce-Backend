@@ -1,0 +1,71 @@
+{
+  "name": "AdminRolePermissions",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "admin_role_permissions"
+    }
+  },
+  "http": {
+    "path": "v1/admin_role_permissions"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "dataType": "bigint",
+      "id": true,
+      "generated" : true,
+      "mysql": {
+        "dataType": "bigint"
+      }
+    },
+    "createdAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": true,
+      "mysql": {
+        "columnName": "created_at"
+      }
+    },
+    "updatedAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "columnName": "updated_at"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "AdminRoles": {
+      "type": "belongsTo",
+      "model": "AdminRoles",
+      "foreignKey": "roleId"
+    },
+    "AdminPermissions": {
+      "type": "belongsTo",
+      "model": "AdminPermissions",
+      "foreignKey": "permissionId"
+    }
+  },
+  "foreignKeys": {
+    "AdminRoles_role-per": {
+      "name" : "AdminRoles_role-per",
+      "foreignKey": "roleId",
+      "entityKey": "id",
+      "entity": "AdminRoles"
+    },
+    "AdminPermissions_role-per": {
+      "name" : "AdminPermissions_role-per",
+      "foreignKey": "permissionId",
+      "entityKey": "id",
+      "entity": "AdminPermissions"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

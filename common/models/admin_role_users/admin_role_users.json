@@ -1,0 +1,71 @@
+{
+  "name": "AdminRoleUsers",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "admin_role_users"
+    }
+  },
+  "http": {
+    "path": "v1/admin_role_users"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "dataType": "bigint",
+      "id": true,
+      "generated" : true,
+      "mysql": {
+        "dataType": "bigint"
+      }
+    },
+    "createdAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": true,
+      "mysql": {
+        "columnName": "created_at"
+      }
+    },
+    "updatedAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "columnName": "updated_at"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "AdminUsers": {
+      "type": "belongsTo",
+      "model": "AdminUsers",
+      "foreignKey": "userId"
+    },
+    "AdminRoles": {
+      "type": "belongsTo",
+      "model": "AdminRoles",
+      "foreignKey": "roleId"
+    }
+  },
+  "foreignKeys": {
+    "AdminUsers_roles": {
+      "name" : "AdminUsers_roles",
+      "foreignKey": "userId",
+      "entityKey": "id",
+      "entity": "AdminUsers"
+    },
+    "AdminRoles_roles": {
+      "name" : "AdminRoles_roles",
+      "foreignKey": "roleId",
+      "entityKey": "id",
+      "entity": "AdminRoles"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

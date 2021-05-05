@@ -1,0 +1,25 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mysqlDS": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "url": "",
+    "database": "",
+    "password": "",
+    "name": "mysqlDS",
+    "user": "root",
+    "connector": "mysql"
+  },
+  "redisDS": {
+    "host": "127.0.0.1",
+    "port": 6379,
+    "url": "redis://:password@127.0.0.1:6379/0",
+    "password": "password",
+    "name": "redisDS",
+    "db": 0,
+    "connector": "ioredis"
+  }
+}

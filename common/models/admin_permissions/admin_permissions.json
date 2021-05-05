@@ -1,0 +1,87 @@
+{
+  "name": "AdminPermissions",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "admin_permissions"
+    }
+  },
+  "http": {
+    "path": "v1/admin_permissions"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "dataType": "bigint",
+      "id": true,
+      "generated" : true,
+      "mysql": {
+        "dataType": "bigint"
+      }
+    },
+    "name": {
+      "type": "string",
+      "mysql": {
+        "columnName": "name",
+        "dataType": "varchar(50)"
+      }
+    },
+    "slug": {
+      "type": "string",
+      "mysql": {
+        "columnName": "slug",
+        "dataType": "varchar(50)"
+      }
+    },
+    "httpMethod": {
+      "type": "string",
+      "mysql": {
+        "columnName": "http_method",
+        "dataType": "varchar(255)"
+      }
+    },
+    "httpPath": {
+      "type": "string",
+      "mysql": {
+        "columnName": "http_path",
+        "dataType": "text"
+      }
+    },
+    "createdAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": true,
+      "mysql": {
+        "columnName": "created_at"
+      }
+    },
+    "updatedAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "columnName": "updated_at"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "AdminUsers": {
+      "type": "hasMany",
+      "model": "AdminUsers",
+      "foreignKey": "userId",
+      "through": "AdminUserPermissions"
+    },
+    "AdminRoles": {
+      "type": "hasMany",
+      "model": "AdminRoles",
+      "foreignKey": "roleId",
+      "through": "AdminRolePermissions"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

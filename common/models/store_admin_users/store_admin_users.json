@@ -1,0 +1,71 @@
+{
+  "name": "StoreAdminUsers",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "store_admin_users"
+    }
+  },
+  "http": {
+    "path": "v1/store_admin_users"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "dataType": "bigint",
+      "id": true,
+      "generated" : true,
+      "mysql": {
+        "dataType": "bigint"
+      }
+    },
+    "createdAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": true,
+      "mysql": {
+        "columnName": "created_at"
+      }
+    },
+    "updatedAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "columnName": "updated_at"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "AdminUsers": {
+      "type": "belongsTo",
+      "model": "AdminUsers",
+      "foreignKey": "userId"
+    },
+    "Stores": {
+      "type": "belongsTo",
+      "model": "Stores",
+      "foreignKey": "storeId"
+    }
+  },
+  "foreignKeys": {
+    "store_admin_users_admin_user": {
+      "name" : "store_admin_users_admin_user",
+      "foreignKey": "userId",
+      "entityKey": "id",
+      "entity": "AdminUsers"
+    },
+    "store_admin_users_store": {
+      "name" : "store_admin_users_store",
+      "foreignKey": "storeId",
+      "entityKey": "id",
+      "entity": "Stores"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

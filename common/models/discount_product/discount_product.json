@@ -1,0 +1,92 @@
+{
+  "name": "DiscountProduct",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "discount_product"
+    }
+  },
+  "http": {
+    "path": "v1/discount_product"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "dataType": "bigint",
+      "id": true,
+      "generated" : true,
+      "mysql": {
+        "dataType": "bigint"
+      }
+    },
+    "priceDiscount": {
+      "type": "number",
+      "required": true,
+      "mysql": {
+        "columnName": "price_discount"
+      }
+    },
+    "off": {
+      "type": "number",
+      "required": true,
+      "mysql": {
+        "columnName": "off"
+      }
+    },
+    "unit": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "unit"
+      }
+    },
+    "createdAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": true,
+      "mysql": {
+        "columnName": "created_at"
+      }
+    },
+    "updatedAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "columnName": "updated_at"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "Products": {
+      "type": "belongsTo",
+      "model": "Products",
+      "foreignKey": "productId"
+    },
+    "Discount": {
+      "type": "belongsTo",
+      "model": "Discount",
+      "foreignKey": "discountId"
+    }
+  },
+  "foreignKeys": {
+    "discount_product_discount": {
+      "name" : "discount_product_discount",
+      "foreignKey": "discountId",
+      "entityKey": "id",
+      "entity": "Discount"
+    },
+    "discount_product_product": {
+      "name" : "discount_product_product",
+      "foreignKey": "productId",
+      "entityKey": "id",
+      "entity": "Products"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

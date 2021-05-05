@@ -1,0 +1,122 @@
+{
+  "name": "User",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "users"
+    }
+  },
+  "http": {
+    "path": "v1/users"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "dataType": "bigint",
+      "id": true,
+      "generated" : true,
+      "mysql": {
+        "dataType": "bigint"
+      }
+    },
+    "firstName": {
+      "type": "string",
+      "required": false,
+      "mysql": {
+        "columnName": "first_name",
+        "dataType": "varchar(100)"
+      }
+    },
+    "lastName": {
+      "type": "string",
+      "required": false,
+      "mysql": {
+        "columnName": "last_name",
+        "dataType": "varchar(100)"
+      }
+    },
+    "email": {
+      "type": "string",
+      "required": true,
+      "index": {
+        "unique": true
+      },
+      "mysql": {
+        "dataType": "varchar(200)"
+      }
+    },
+    "password": {
+      "type": "string",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "dataType": "varchar(200)"
+      }
+    },
+    "deactiveToken": {
+      "type": "string",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "dataType": "varchar(200)",
+        "columnName": "deactive_token"
+      }
+    },
+    "twoFaToken": {
+      "type": "string",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "dataType": "varchar(500)",
+        "columnName": "two_fa_token"
+      }
+    },
+    "isSuspend": {
+      "type": "boolean",
+      "required": true,
+      "default": false,
+      "mysql": {
+        "columnName": "is_suspend"
+      }
+    },
+    "countryCode": {
+      "type": "string",
+      "required": false,
+      "mysql": {
+        "columnName": "country_code",
+        "nullable": true
+      }
+    },
+    "enableTwoFa": {
+      "type": "boolean",
+      "required": true,
+      "default": false,
+      "mysql": {
+        "columnName": "enable_two_fa"
+      }
+    },
+    "createdAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": true,
+      "mysql": {
+        "columnName": "created_at"
+      }
+    },
+    "updatedAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "columnName": "updated_at"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

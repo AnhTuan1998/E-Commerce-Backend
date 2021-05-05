@@ -1,0 +1,106 @@
+{
+  "name": "Stores",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "stores"
+    }
+  },
+  "http": {
+    "path": "v1/stores"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "dataType": "bigint",
+      "id": true,
+      "generated" : true,
+      "mysql": {
+        "dataType": "bigint"
+      }
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "name",
+        "dataType": "varchar(50)"
+      }
+    },
+    "description": {
+      "type": "string",
+      "required": false,
+      "mysql": {
+        "columnName": "description",
+        "dataType": "varchar(512)"
+      }
+    },
+    "address": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "address",
+        "dataType": "varchar(255)"
+      }
+    },
+    "phone": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "phone",
+        "dataType": "varchar(255)"
+      }
+    },
+    "email": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "email",
+        "dataType": "varchar(255)"
+      }
+    },
+    "createdAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": true,
+      "mysql": {
+        "columnName": "created_at"
+      }
+    },
+    "updatedAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "columnName": "updated_at"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "StoreWallets": {
+      "type": "belongsTo",
+      "model": "StoreWallets",
+      "foreignKey": "walletId"
+    },
+    "AdminUsers": {
+      "type": "hasMany",
+      "model": "AdminUsers",
+      "foreignKey": "userId",
+      "through": "StoreAdminUsers"
+    }
+  },
+  "foreignKeys": {
+    "store_store_wallet": {
+      "name" : "store_store_wallet",
+      "foreignKey": "walletId",
+      "entityKey": "id",
+      "entity": "StoreWallets"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

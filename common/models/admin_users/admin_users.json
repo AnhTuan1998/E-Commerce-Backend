@@ -1,0 +1,127 @@
+{
+  "name": "AdminUsers",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "admin_users"
+    }
+  },
+  "http": {
+    "path": "v1/admin_users"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "dataType": "bigint",
+      "id": true,
+      "generated" : true,
+      "mysql": {
+        "dataType": "bigint"
+      }
+    },
+    "username": {
+      "type": "string",
+      "required": true,
+      "index": {
+        "unique": true
+      },
+      "mysql": {
+        "columnName": "username",
+        "dataType": "varchar(50)"
+      }
+    },
+    "password": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "password",
+        "dataType": "varchar(60)"
+      }
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "mysql": {
+        "columnName": "name",
+        "dataType": "varchar(255)"
+      }
+    },
+    "avatar": {
+      "type": "string",
+      "required": false,
+      "mysql": {
+        "columnName": "avatar",
+        "dataType": "varchar(255)"
+      }
+    },
+    "rememberToken": {
+      "type": "string",
+      "required": false,
+      "mysql": {
+        "columnName": "remember_token",
+        "dataType": "varchar(100)"
+      }
+    },
+    "email": {
+      "type": "string",
+      "required": true,
+      "index": {
+        "unique": true
+      },
+      "mysql": {
+        "columnName": "email",
+        "dataType": "varchar(255)"
+      }
+    },
+    "status": {
+      "type": "number",
+      "required": false,
+      "mysql": {
+        "columnName": "status",
+        "dataType": "tinyint(1)"
+      }
+    },
+    "createdAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": true,
+      "mysql": {
+        "columnName": "created_at"
+      }
+    },
+    "updatedAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "columnName": "updated_at"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "AdminPermissions": {
+      "type": "hasMany",
+      "model": "AdminPermissions",
+      "foreignKey": "permissionId",
+      "through": "AdminUserPermissions"
+    },
+    "AdminRoles": {
+      "type": "hasMany",
+      "model": "AdminRoles",
+      "foreignKey": "roleId",
+      "through": "AdminRoleUsers"
+    },
+    "Store": {
+      "type": "hasMany",
+      "model": "Stores",
+      "foreignKey": "storeId",
+      "through": "StoreAdminUsers"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

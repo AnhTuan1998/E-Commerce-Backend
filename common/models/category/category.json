@@ -1,0 +1,107 @@
+{
+  "name": "Category",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "category"
+    }
+  },
+  "http": {
+    "path": "v1/category"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "dataType": "bigint",
+      "id": true,
+      "generated" : true,
+      "mysql": {
+        "dataType": "bigint"
+      }
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "name",
+        "dataType": "varchar(100)"
+      }
+    },
+    "image": {
+      "type": "string",
+      "required": false,
+      "mysql": {
+        "columnName": "image",
+        "dataType": "varchar(255)"
+      }
+    },
+    "keyword": {
+      "type": "string",
+      "required": false,
+      "mysql": {
+        "columnName": "keyword",
+        "dataType": "varchar(255)"
+      }
+    },
+    "uniqueKey": {
+      "type": "string",
+      "required": false,
+      "mysql": {
+        "columnName": "unique_key",
+        "dataType": "varchar(255)"
+      }
+    },
+    "description": {
+      "type": "string",
+      "required": false,
+      "mysql": {
+        "columnName": "description",
+        "dataType": "varchar(1024)"
+      }
+    },
+    "status": {
+      "type": "number",
+      "required": false,
+      "mysql": {
+        "columnName": "status"
+      }
+    },
+    "createdAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": true,
+      "mysql": {
+        "columnName": "created_at"
+      }
+    },
+    "updatedAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "columnName": "updated_at"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "Category": {
+      "type": "belongsTo",
+      "model": "Category",
+      "foreignKey": "parentId"
+    }
+  },
+  "foreignKeys": {
+    "category_category": {
+      "name" : "category_category",
+      "foreignKey": "parentId",
+      "entityKey": "id",
+      "entity": "Category"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

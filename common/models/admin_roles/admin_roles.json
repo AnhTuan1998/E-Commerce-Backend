@@ -1,0 +1,79 @@
+{
+  "name": "AdminRoles",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "admin_roles"
+    }
+  },
+  "http": {
+    "path": "v1/admin_roles"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "dataType": "bigint",
+      "id": true,
+      "generated" : true,
+      "mysql": {
+        "dataType": "bigint"
+      }
+    },
+    "name": {
+      "type": "string",
+      "mysql": {
+        "columnName": "name",
+        "dataType": "varchar(50)"
+      }
+    },
+    "slug": {
+      "type": "string",
+      "mysql": {
+        "columnName": "slug",
+        "dataType": "varchar(50)"
+      }
+    },
+    "createdAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": true,
+      "mysql": {
+        "columnName": "created_at"
+      }
+    },
+    "updatedAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "columnName": "updated_at"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "AdminUsers": {
+      "type": "hasMany",
+      "model": "AdminUsers",
+      "foreignKey": "userId",
+      "through": "AdminRoleUsers"
+    },
+    "AdminPermissions": {
+      "type": "hasMany",
+      "model": "AdminPermissions",
+      "foreignKey": "permissionId",
+      "through": "AdminRolePermissions"
+    },
+    "AdminMenu": {
+      "type": "hasMany",
+      "model": "AdminMenu",
+      "foreignKey": "menuId",
+      "through": "AdminRoleMenu"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,78 @@
+{
+  "name": "StoreWallets",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "store_wallets"
+    }
+  },
+  "http": {
+    "path": "v1/store_wallets"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "dataType": "bigint",
+      "id": true,
+      "generated" : true,
+      "mysql": {
+        "dataType": "bigint"
+      }
+    },
+    "wallet": {
+      "type": "string",
+      "required": true,
+      "index": {
+        "unique": true
+      },
+      "mysql": {
+        "columnName": "wallet"
+      }
+    },
+    "coin": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "coin"
+      }
+    },
+    "symbol": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "symbol"
+      }
+    },
+    "priceUsd": {
+      "type": "number",
+      "required": true,
+      "mysql": {
+        "columnName": "price_usd"
+      }
+    },
+    "createdAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": true,
+      "mysql": {
+        "columnName": "created_at"
+      }
+    },
+    "updatedAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "columnName": "updated_at"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "foreignKeys": {},
+  "acls": [],
+  "methods": {}
+}

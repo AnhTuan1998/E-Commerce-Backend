@@ -1,0 +1,91 @@
+{
+  "name": "AdminMenu",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "admin_menu"
+    }
+  },
+  "http": {
+    "path": "v1/admin_menu"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "dataType": "bigint",
+      "id": true,
+      "generated" : true,
+      "mysql": {
+        "dataType": "bigint"
+      }
+    },
+    "order": {
+      "type": "string",
+      "mysql": {
+        "columnName": "order",
+        "dataType": "int"
+      }
+    },
+    "title": {
+      "type": "string",
+      "mysql": {
+        "columnName": "title",
+        "dataType": "varchar(50)"
+      }
+    },
+    "uri": {
+      "type": "string",
+      "mysql": {
+        "columnName": "uri",
+        "dataType": "varchar(50)"
+      }
+    },
+    "icon": {
+      "type": "string",
+      "mysql": {
+        "columnName": "icon",
+        "dataType": "varchar(50)"
+      }
+    },
+    "uid": {
+      "type": "string",
+      "index": {
+        "unique": true
+      },
+      "mysql": {
+        "columnName": "uid",
+        "dataType": "varchar(50)"
+      }
+    },
+    "createdAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": true,
+      "mysql": {
+        "columnName": "created_at"
+      }
+    },
+    "updatedAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "columnName": "updated_at"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "AdminUsers": {
+      "type": "hasMany",
+      "model": "AdminUsers",
+      "foreignKey": "userId",
+      "through": "AdminRoleMenu"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,94 @@
+{
+  "name": "Discount",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "discount"
+    }
+  },
+  "http": {
+    "path": "v1/discount"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "dataType": "bigint",
+      "id": true,
+      "generated" : true,
+      "mysql": {
+        "dataType": "bigint"
+      }
+    },
+    "off": {
+      "type": "number",
+      "required": true,
+      "mysql": {
+        "columnName": "off"
+      }
+    },
+    "unit": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "unit"
+      }
+    },
+    "dateStart": {
+      "type": "number",
+      "required": true,
+      "mysql": {
+        "columnName": "date_start"
+      }
+    },
+    "dateEnd": {
+      "type": "number",
+      "required": true,
+      "mysql": {
+        "columnName": "date_end"
+      }
+    },
+    "createdAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": true,
+      "mysql": {
+        "columnName": "created_at"
+      }
+    },
+    "updatedAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "columnName": "updated_at"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "Stores": {
+      "type": "belongsTo",
+      "model": "Stores",
+      "foreignKey": "storeId"
+    },
+    "Products": {
+      "type": "hasMany",
+      "model": "Products",
+      "foreignKey": "productId",
+      "through": "DiscountProduct"
+    }
+  },
+  "foreignKeys": {
+    "discount_store": {
+      "name" : "discount_store",
+      "foreignKey": "storeId",
+      "entityKey": "id",
+      "entity": "Stores"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
